@@ -45,3 +45,22 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+
+# Package Files #
+
+*.jar
+
+*.war
+
+*.ear
+
+
+### Java ###
+
+*.class
+
+.classpath
+.gitignore
+.project
+.settings/
