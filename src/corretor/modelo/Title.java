@@ -11,17 +11,22 @@ public class Title {
 		return title;
 	}
 
-	public void setTitle(String texto) {
+	public void setTitle(String text) {
 
-		String regex = "\\\\title\\{(?<meuTitulo>.*?)\\}";
+		String regex = "\\\\title\\{(?<titulo>.*?)\\}";
 
-		String title = texto.replace("\\", "\\\\");//escapando as barras no arquivo
+		String title = text.replace("\\", "\\\\");//escapando as barras no arquivo
 		
 		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 		Matcher comparator = pattern.matcher(title);
 		
 		if (comparator.find()) {
-			this.title = comparator.group("meuTitulo");
+			this.title = comparator.group("titulo");
 		}
+		System.out.println(getTitle()+"\n\n");
+	}
+	
+	public String getName(){
+		return "Title";
 	}
 }

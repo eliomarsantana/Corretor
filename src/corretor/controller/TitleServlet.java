@@ -1,9 +1,6 @@
 package corretor.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,33 +10,34 @@ import javax.servlet.http.HttpSession;
 
 import corretor.builders.LatexConcreteBuilder;
 import corretor.interfaces.FileTypeBuilder;
+import corretor.regras.Regras;
 
 /**
- * Servlet implementation class ProcessFile
+ * Servlet implementation class TitleServlet
  */
-@WebServlet("/ProcessFile")
-public class ProcessFile extends HttpServlet {
+@WebServlet("/TitleServlet")
+public class TitleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	
-       
-    @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    	
     	HttpSession session = request.getSession();
     	
-    	String arquivo = request.getParameter("arquivo");
-		String dados = new String(Files.readAllBytes(new File(arquivo).toPath()));
+    	Regras regras = new Regras();
+    	
+    	System.out.println("Chegou na servlet Title");
+    	
+    	String sessao = (String)session.getAttribute("dados");
+    	
+    	FileTypeBuilder flb = new LatexConcreteBuilder();
 		
-		session.setAttribute("dados", dados);
+    	flb.createTitle().setTitle(sessao);
 		
-		//FileTypeBuilder flb = new LatexConcreteBuilder();
-		//flb.createTitle().setTitle(dados);
-		//flb.createResumo().setText(dados);
-		
-		
-		request.getRequestDispatcher("/TitleServlet").forward(request, response);
-   	
+		//regras.countCharacters(flb.createTitle().getTitle());
+    	
+    	request.getRequestDispatcher("/ResumeServlet").forward(request, response);
     }
+	
+	
 
 }
