@@ -58,7 +58,11 @@ body {
 	<form action="ProcessFile" method="POST" onSubmit="return (validar(this))">
 		<!-- Main hero unit for a primary marketing message or call to action -->
 		<div class="hero-unit">
+<<<<<<< HEAD
 			<p>Faça aqui o upload do seu arquivo .tex:</p>
+=======
+			<p>Anexar arquivo .tex:</p>
+>>>>>>> 5478797a2f06392f60af50417dc673ca0d3a00a0
 			<p>
 					<%
 						String erro = (String) request.getAttribute("erro");
@@ -71,6 +75,7 @@ body {
 				</p>
 			
 		</div>
+<<<<<<< HEAD
 
 		<!-- Example row of columns -->
 		<div class="row">
@@ -128,6 +133,25 @@ body {
 <div class="alert alert-warning" role="alert">...</div>
 <div class="alert alert-danger" role="alert">...</div>
 		<hr>
+=======
+		
+		<table class="table table-hover">
+		<thead>
+			<tr>
+  				<th>#</th>
+  				<th>Introdução</th>
+  				<th></th>
+  				<th></th>
+  			</tr>
+  		</thead>
+  		<tbody>
+  			<tr>
+  			<th scope="row">1</th>
+  			<td>Mark</td>
+  			</tr>
+  		</tbody>
+		</table>
+>>>>>>> 5478797a2f06392f60af50417dc673ca0d3a00a0
 
 		<footer>
 		<p>©Instituto Federal de Educação, Ciências e Tecnologia da Bahia

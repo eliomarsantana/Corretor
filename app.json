@@ -1,0 +1,17 @@
+{
+  "name": "Corretor",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "https://git.heroku.com/servidor-corretor"
+    }
+  ]
+}

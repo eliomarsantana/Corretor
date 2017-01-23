@@ -33,10 +33,15 @@ public class ProcessFile extends HttpServlet {
 		
 		session.setAttribute("dados", dados);
 		
+<<<<<<< HEAD
 		//FileTypeBuilder flb = new LatexConcreteBuilder();
 		//flb.createTitle().setTitle(dados);
 		//flb.createResumo().setText(dados);
 		
+=======
+		FileTypeBuilder flb = new LatexConcreteBuilder();
+		flb.createResumo().setText(dados);
+>>>>>>> 5478797a2f06392f60af50417dc673ca0d3a00a0
 		
 		request.getRequestDispatcher("/TitleServlet").forward(request, response);
    	

@@ -10,7 +10,10 @@ import javax.servlet.http.HttpSession;
 
 import corretor.builders.LatexConcreteBuilder;
 import corretor.interfaces.FileTypeBuilder;
+<<<<<<< HEAD
 import corretor.regras.Regras;
+=======
+>>>>>>> 5478797a2f06392f60af50417dc673ca0d3a00a0
 
 /**
  * Servlet implementation class TitleServlet
@@ -23,6 +26,7 @@ public class TitleServlet extends HttpServlet {
     	
     	HttpSession session = request.getSession();
     	
+<<<<<<< HEAD
     	Regras regras = new Regras();
     	
     	System.out.println("Chegou na servlet Title");
@@ -36,6 +40,16 @@ public class TitleServlet extends HttpServlet {
 		//regras.countCharacters(flb.createTitle().getTitle());
     	
     	request.getRequestDispatcher("/ResumeServlet").forward(request, response);
+=======
+    	System.out.println("Chegou na servlet Title");
+    	String sessao = (String)session.getAttribute("dados");
+    	FileTypeBuilder flb = new LatexConcreteBuilder();
+		flb.createTitle().setTitle(sessao);
+		System.out.println(flb.createTitle().getClass().getName());
+		System.out.println(sessao);
+    	
+    	request.getRequestDispatcher("/index.jsp").forward(request, response);
+>>>>>>> 5478797a2f06392f60af50417dc673ca0d3a00a0
     }
 	
 	
