@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -58,16 +58,13 @@ body {
 	<form action="ProcessFile" method="POST" onSubmit="return (validar(this))">
 		<!-- Main hero unit for a primary marketing message or call to action -->
 		<div class="hero-unit">
-<<<<<<< HEAD
-			<p>Faça aqui o upload do seu arquivo .tex:</p>
-=======
+
 			<p>Anexar arquivo .tex:</p>
->>>>>>> 5478797a2f06392f60af50417dc673ca0d3a00a0
 			<p>
 					<%
 						String erro = (String) request.getAttribute("erro");
 					%>
-					<%=erro%>
+					
 				</p>
 				<p>
 					<input type="submit" class="btn btn-primary btn-large" value="Enviar"/>
@@ -75,87 +72,30 @@ body {
 				</p>
 			
 		</div>
-<<<<<<< HEAD
+	
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+  </tbody>
+</table>
 
-		<!-- Example row of columns -->
-		<div class="row">
-			<div class="span4">
-				<h2>Title</h2>
-				<div class="alert alert-success" role="alert"><p>
-					<%
-						String msn = (String) request.getAttribute("msg");
-					%>
-					<%=msn%>
-				</p></div>
-				<div class="alert alert-danger" role="alert"><p>
-					<%
-						String msn2 = (String) request.getAttribute("msg2");
-					%>
-					<%=msn2%>
-				</p></div>
-								<p>
-					<%
-						String msn3 = (String) request.getAttribute("msg3");
-					%>
-					<%=msn3%>
-				</p>
-				</p>
-								<p>
-					<%
-						String msn4 = (String) request.getAttribute("msg4");
-					%>
-					<%=msn4%>
-				</p>
-				<p>
-					<a class="btn"
-						href="#">Mais detalhes »</a>
-				</p>
-			</div>
-			<div class="span4">
-				<h2>Abstract</h2>
-				<p></p>
-				<p>
-					<a class="btn"
-						href="#">Mais detalhes »</a>
-				</p>
-			</div>
-			<div class="span4">
-				<h2>Introdução</h2>
-				<p></p>
-				<p>
-					<a class="btn"
-						href="#">Mais detalhes »</a>
-				</p>
-			</div>
-		</div>
-		<div class="alert alert-success" role="alert">...</div>
-<div class="alert alert-info" role="alert">...</div>
-<div class="alert alert-warning" role="alert">...</div>
-<div class="alert alert-danger" role="alert">...</div>
 		<hr>
-=======
-		
-		<table class="table table-hover">
-		<thead>
-			<tr>
-  				<th>#</th>
-  				<th>Introdução</th>
-  				<th></th>
-  				<th></th>
-  			</tr>
-  		</thead>
-  		<tbody>
-  			<tr>
-  			<th scope="row">1</th>
-  			<td>Mark</td>
-  			</tr>
-  		</tbody>
-		</table>
->>>>>>> 5478797a2f06392f60af50417dc673ca0d3a00a0
 
 		<footer>
-		<p>©Instituto Federal de Educação, Ciências e Tecnologia da Bahia
-			- 2016</p>
+		<p>Â©Instituto Federal de EducaÃ§Ã£o, CiÃªncias e Tecnologia da Bahia - 2016</p>
 		</footer>
 	</form>
 	</div>

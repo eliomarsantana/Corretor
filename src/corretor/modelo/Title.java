@@ -24,15 +24,8 @@ public class Title {
 			this.title = comparator.group("titulo");
 		}
 		System.out.println(getTitle()+"\n\n");
-<<<<<<< HEAD
+
 	}
-	
-	public String getName(){
-		return "Title";
-=======
->>>>>>> 5478797a2f06392f60af50417dc673ca0d3a00a0
-	}
-	
 	public String getName(){
 		return "Title";
 	}
