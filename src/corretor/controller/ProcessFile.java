@@ -53,13 +53,11 @@ public class ProcessFile extends HttpServlet {
     	
 		String dados = new String(Files.readAllBytes(new File(arquivo).toPath()));
 		String dados2 = util.charset(dados);
-		try {
-			System.out.println(util.extractText(dados2));
-		} catch (ParseException e) {
+		
+			System.out.println(dados2);
+		
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-			
+		
 		int count = 0;
 		//MONTANDO O TEXTO NA ORDEM EM UMA ÚNICA STRING
 		String regex = "\\\\input\\{(?<texto>.*?)\\}";
@@ -70,7 +68,8 @@ public class ProcessFile extends HttpServlet {
 			String title = matcher.group("texto");
 			System.out.println(title);
 			
-			
+			String teste = "";
+			teste.replaceAll("[\\\\input\\{(?<include>.*?)\\} | \\\\section\\{(?<section>.*?)\\}]", "");
 			String sections = new String(Files.readAllBytes(new File(diretorioPrincipal+title).toPath()));
 			
 			
@@ -87,12 +86,8 @@ public class ProcessFile extends HttpServlet {
 			   linha = br.readLine();
 			   String linha2 = util.charset(linha);
 				
-				try {
-					System.out.println(util.extractText(linha2));
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			   System.out.println(linha2.replaceAll("[\\{ | \\}]", " "));
+				
 			}
 			
 			br.close();

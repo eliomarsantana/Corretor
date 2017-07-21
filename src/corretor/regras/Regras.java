@@ -61,4 +61,18 @@ public class Regras {
 		}
 		return numeropalavras;
 	}
+	
+	public void virgulaPonto(String texto){
+		
+    	String regex = "(\\w)(\\s+)([\\.,])";
+
+    	int count = 0;
+		Pattern pattern = Pattern.compile(regex,Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(texto);
+		System.out.println(matcher);
+		while (matcher.find()) {
+			count++;
+			System.out.println("Você tem "+count+" ocoência de espaço antes de . ou ,");
+		}
+	}
 }
