@@ -73,6 +73,7 @@ public class Regras {
 		while (matcher.find()) {
 			count++;
 			System.out.println("Você tem "+count+" ocoência de espaço antes de . ou ,");
+			System.out.println(texto.substring((matcher.end(1)), (matcher.end(1)+50)));
 		}
 	}
 }

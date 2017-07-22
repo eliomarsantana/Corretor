@@ -37,7 +37,7 @@ import corretor.regras.Util;
 public class ProcessFile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	
+	public static String TEXTO_COMPLETO;
        
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,7 +54,7 @@ public class ProcessFile extends HttpServlet {
 		String dados = new String(Files.readAllBytes(new File(arquivo).toPath()));
 		String dados2 = util.charset(dados);
 		
-			System.out.println(dados2);
+		TEXTO_COMPLETO = TEXTO_COMPLETO+dados2;
 		
 			// TODO Auto-generated catch block
 		
@@ -65,20 +65,25 @@ public class ProcessFile extends HttpServlet {
 		Pattern pattern = Pattern.compile(regex,Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(dados2);
 		while (matcher.find()) {
-			String title = matcher.group("texto");
-			System.out.println(title);
-			
-			String teste = "";
-			teste.replaceAll("[\\\\input\\{(?<include>.*?)\\} | \\\\section\\{(?<section>.*?)\\}]", "");
-			String sections = new String(Files.readAllBytes(new File(diretorioPrincipal+title).toPath()));
-			
-			
-			
+			String input = matcher.group("texto");
+			System.out.println(input);
+
+			String sections = new String(Files.readAllBytes(new File(diretorioPrincipal+input).toPath()));
+
 			String sections2 = util.charset(sections);
-			System.out.println(sections2);
+			TEXTO_COMPLETO = "/n" +TEXTO_COMPLETO + sections2;
 			
-			File arquivos = new File(diretorioPrincipal+title);
 			
+		}	
+			
+			
+		System.out.println(TEXTO_COMPLETO);	
+			
+		Regras r = new Regras();
+		r.virgulaPonto(TEXTO_COMPLETO);
+			//File arquivos = new File(diretorioPrincipal+title);
+			
+			/*
 			//System.out.println("URL: "+url.toString());
 			String linha = "";
 			BufferedReader br = new BufferedReader(new FileReader(arquivos));
@@ -90,11 +95,11 @@ public class ProcessFile extends HttpServlet {
 				
 			}
 			
-			br.close();
+			br.close();*/
 			
 		
 		
-		}
+		
 		
 			//LIMITANDO PARA TESTE
 			/*
