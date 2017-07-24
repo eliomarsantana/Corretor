@@ -80,7 +80,13 @@ public class ProcessFile extends HttpServlet {
 		System.out.println(TEXTO_COMPLETO);	
 			
 		Regras r = new Regras();
-		r.virgulaPonto(TEXTO_COMPLETO);
+		List erros = r.virgulaPonto(TEXTO_COMPLETO);
+		session.setAttribute("erros", erros);
+		
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		
+		//r.virgulaPonto(TEXTO_COMPLETO);
+		
 			//File arquivos = new File(diretorioPrincipal+title);
 			
 			/*
@@ -137,7 +143,7 @@ public class ProcessFile extends HttpServlet {
 		//flb.createResumo().setText(dados);
 
 		
-		//request.getRequestDispatcher("/TitleServlet").forward(request, response);
+		
    	*/	
 		
     

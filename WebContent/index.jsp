@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -78,17 +78,21 @@ body {
     <tr>
       <th>#</th>
       <th>First Name</th>
-      <th>Last Name</th>
-      <th>Username</th>
+
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+     <td><%
+     	List erros = (List)request.getAttribute("erros");
+     	Iterator it = erros.iterator();
+     	while (it.hasNext()){
+     		out.print(it.next());
+     	}
+     %></td>
+
     </tr>
+    
   </tbody>
 </table>
 

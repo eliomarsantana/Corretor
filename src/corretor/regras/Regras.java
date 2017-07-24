@@ -1,9 +1,13 @@
 package corretor.regras;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Regras {
+	
+	List<String> erros = new ArrayList<String>();
 
 	public Object countCharacters(String texto) {
 		int cont=0;
@@ -62,7 +66,8 @@ public class Regras {
 		return numeropalavras;
 	}
 	
-	public void virgulaPonto(String texto){
+	public List virgulaPonto(String texto){
+		
 		
     	String regex = "(\\w)(\\s+)([\\.,])";
 
@@ -74,6 +79,10 @@ public class Regras {
 			count++;
 			System.out.println("Você tem "+count+" ocoência de espaço antes de . ou ,");
 			System.out.println(texto.substring((matcher.end(1)), (matcher.end(1)+50)));
+			erros.add(texto.substring((matcher.end(1)), (matcher.end(1)+50)));
 		}
+		return erros;
 	}
+	
+	
 }

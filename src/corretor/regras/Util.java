@@ -6,6 +6,7 @@ import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CharsetEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jbibtex.ParseException;
@@ -50,5 +51,7 @@ public String charset(String texto) throws CharacterCodingException{
 		String t2 = t1.replaceAll("&", "");
 		return t2;
 	}
+	
+
 
 }
