@@ -1,6 +1,7 @@
 package corretor.regras;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -66,7 +67,7 @@ public class Regras {
 		return numeropalavras;
 	}
 	
-	public List virgulaPonto(String texto){
+	public List<String> virgulaPonto(String texto){
 		
 		
     	String regex = "(\\w)(\\s+)([\\.,])";
@@ -84,5 +85,8 @@ public class Regras {
 		return erros;
 	}
 	
+	public List<String> getLista(){
+		return erros;
+	}
 	
 }

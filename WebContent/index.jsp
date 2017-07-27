@@ -72,31 +72,6 @@ body {
 				</p>
 			
 		</div>
-	
-<table class="table">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>First Name</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-     <td><%
-     	List erros = (List)request.getAttribute("erros");
-     	Iterator it = erros.iterator();
-     	while (it.hasNext()){
-     		out.print(it.next());
-     	}
-     %></td>
-
-    </tr>
-    
-  </tbody>
-</table>
-
-		<hr>
 
 		<footer>
 		<p>©Instituto Federal de Educação, Ciências e Tecnologia da Bahia - 2016</p>

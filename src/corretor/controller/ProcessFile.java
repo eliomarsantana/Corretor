@@ -79,11 +79,14 @@ public class ProcessFile extends HttpServlet {
 			
 		System.out.println(TEXTO_COMPLETO);	
 			
-		Regras r = new Regras();
-		List erros = r.virgulaPonto(TEXTO_COMPLETO);
-		session.setAttribute("erros", erros);
 		
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		
+		
+		
+		session.setAttribute("erros", getLista());
+		session.setAttribute("erros2", getLista());
+		
+		request.getRequestDispatcher("/lista.jsp").forward(request, response);
 		
 		//r.virgulaPonto(TEXTO_COMPLETO);
 		
@@ -122,7 +125,11 @@ public class ProcessFile extends HttpServlet {
 			
 			
 		}
-	
+    	public List<String> getLista(){
+    		Regras r = new Regras();
+    		List<String> e = r.virgulaPonto(TEXTO_COMPLETO);
+    		return e;
+    	} 
 		
 		/*
 		//session.setAttribute("dados", dados);
