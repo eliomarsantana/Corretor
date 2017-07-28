@@ -1,4 +1,4 @@
-package corretor.regras;
+package corretor.controller;
 
 import java.util.ArrayList;
 import java.util.Iterator;

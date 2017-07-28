@@ -23,12 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.jbibtex.ParseException;
-
-import corretor.builders.LatexConcreteBuilder;
-import corretor.interfaces.FileTypeBuilder;
-import corretor.regras.Regras;
-import corretor.regras.Util;
 
 /**
  * Servlet implementation class ProcessFile
