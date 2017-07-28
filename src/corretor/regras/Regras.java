@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 public class Regras {
 	
 	List<String> erros = new ArrayList<String>();
+	List<String> erros2 = new ArrayList<String>();
 
 	public Object countCharacters(String texto) {
 		int cont=0;
@@ -87,6 +88,22 @@ public class Regras {
 	
 	public List<String> getLista(){
 		return erros;
+	}
+	
+	public List<String> getLista2(){
+		return erros2;
+	}
+	
+	public List<String> encontrarDoisPontos(String texto){
+		
+		int tam = texto.length();
+		for(int i=0; i<tam;i++){
+			if(texto.charAt(i) == ':' && Character.isUpperCase(texto.charAt(i+2))){
+				erros2.add(texto.substring(texto.charAt(i), texto.charAt(i)+50));
+				System.out.println("deposi dos dois pontos é letra minúscula");
+			}
+		}
+		return erros2;
 	}
 	
 }
