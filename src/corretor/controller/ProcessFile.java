@@ -28,6 +28,11 @@ public class ProcessFile extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	response.setContentType("text/html;charset=UTF-8");
     	HttpSession session = request.getSession();
+    	
+    	request.removeAttribute("erros");
+    	request.removeAttribute("erros2");
+    	request.removeAttribute("erros3");
+    	request.removeAttribute("erros4");
     	Util util = new Util();
     	
     	String arquivo = request.getParameter("arquivo");
@@ -37,9 +42,8 @@ public class ProcessFile extends HttpServlet {
     	
     	
 		String dados = new String(Files.readAllBytes(new File(arquivo).toPath()));
-		String dados2 = util.charset(dados);
 		
-		TEXTO_COMPLETO = TEXTO_COMPLETO+dados2;
+		TEXTO_COMPLETO = util.charset(dados);
 		
 			// TODO Auto-generated catch block
 		
@@ -48,28 +52,36 @@ public class ProcessFile extends HttpServlet {
 		String regex = "\\\\input\\{(?<texto>.*?)\\}";
 		
 		Pattern pattern = Pattern.compile(regex,Pattern.CASE_INSENSITIVE);
-		Matcher matcher = pattern.matcher(dados2);
+		Matcher matcher = pattern.matcher(TEXTO_COMPLETO);
 		while (matcher.find()) {
 			String input = matcher.group("texto");
-			System.out.println(input);
+			//System.out.println(input);
 
 			String sections = new String(Files.readAllBytes(new File(diretorioPrincipal+input).toPath()));
-
+			
 			String sections2 = util.charset(sections);
+			Matcher matcher2 = pattern.matcher(sections2);
+			while (matcher2.find()) {
+				String input2 = matcher.group("texto");
+				String inputSection = new String(Files.readAllBytes(new File(diretorioPrincipal+input2).toPath()));
+				TEXTO_COMPLETO = "/n" +TEXTO_COMPLETO + inputSection;
+			}
 			TEXTO_COMPLETO = "/n" +TEXTO_COMPLETO + sections2;
 			
 			
 		}	
 			
 			
-		System.out.println(TEXTO_COMPLETO);	
+		//System.out.println(TEXTO_COMPLETO);	
 			
 		
 		
 		
 		
-		session.setAttribute("erros", getLista());
-		session.setAttribute("erros2", getLista2());
+		request.setAttribute("erros", getLista());
+		request.setAttribute("erros2", getLista2());
+		request.setAttribute("erros3", getLista3());
+		request.setAttribute("erros4", getLista4());
 		
 		request.getRequestDispatcher("/lista.jsp").forward(request, response);
 		
@@ -104,11 +116,6 @@ public class ProcessFile extends HttpServlet {
 					e.printStackTrace();
 				}*/
 			
-
-			
-			
-			
-			
 		}
     	public List<String> getLista(){
     		Regras r = new Regras();
@@ -121,6 +128,18 @@ public class ProcessFile extends HttpServlet {
     		List<String> e = r.encontrarDoisPontos(TEXTO_COMPLETO);
     		return e;
     	} 
+    	
+    	public List<String> getLista3(){
+    		Regras r = new Regras();
+    		List<String> e = r.espacoParentese(TEXTO_COMPLETO);
+    		return e;
+    	}
+    	
+    	public List<String> getLista4(){
+    		Regras r = new Regras();
+    		List<String> e = r.espacoCitacao(TEXTO_COMPLETO);
+    		return e;
+    	}
 		
 		/*
 		//session.setAttribute("dados", dados);

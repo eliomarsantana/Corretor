@@ -76,11 +76,11 @@ public class Regras {
     	int count = 0;
 		Pattern pattern = Pattern.compile(regex,Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(texto);
-		System.out.println(matcher);
+		//System.out.println(matcher);
 		while (matcher.find()) {
 			count++;
-			System.out.println("Você tem "+count+" ocoência de espaço antes de . ou ,");
-			System.out.println(texto.substring((matcher.end(1)), (matcher.end(1)+50)));
+			//System.out.println("Você tem "+count+" ocoência de espaço antes de . ou ,");
+			//System.out.println(texto.substring((matcher.end(1)), (matcher.end(1)+50)));
 			erros.add(texto.substring((matcher.end(1)), (matcher.end(1)+50)));
 		}
 		return erros;
@@ -89,21 +89,58 @@ public class Regras {
 	public List<String> getLista(){
 		return erros;
 	}
-	
-	public List<String> getLista2(){
-		return erros2;
-	}
+
 	
 	public List<String> encontrarDoisPontos(String texto){
 		
 		int tam = texto.length();
 		for(int i=0; i<tam;i++){
-			if(texto.charAt(i) == ':' && Character.isUpperCase(texto.charAt(i+2))){
-				erros2.add(texto.substring(texto.charAt(i), texto.charAt(i)+50));
-				System.out.println("deposi dos dois pontos é letra minúscula");
+			if((texto.charAt(i) == ':') && (Character.isSpaceChar(texto.charAt(i+1)) && (Character.isUpperCase(texto.charAt(i+2))))){
+				//System.out.println(texto.charAt(i) +" <-i e i+50 ->"+texto.charAt(i+2));
+				//System.out.println("deposi dos dois pontos é letra minúscula");
+				String p = texto.substring(i, i+50);
+				//System.out.println(p);
+				erros.add(p);
+				
 			}
 		}
-		return erros2;
+		return erros;
+	}
+	
+	public List<String> espacoParentese(String texto){
+		
+		
+    	String regex = "(\\w)([\\(])";
+
+    	int count = 0;
+		Pattern pattern = Pattern.compile(regex,Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(texto);
+		//System.out.println(matcher);
+		while (matcher.find()) {
+			count++;
+			//System.out.println("Você tem "+count+" ocoência de espaço antes de . ou ,");
+			//System.out.println(texto.substring((matcher.end(1)), (matcher.end(1)+50)));
+			erros.add(texto.substring((matcher.end(1)), (matcher.end(1)+50)));
+		}
+		return erros;
+	}
+	
+	public List<String> espacoCitacao(String texto){
+		
+		
+    	String regex = "(\\w)(\\\\(cite)\\{)";
+
+    	int count = 0;
+		Pattern pattern = Pattern.compile(regex,Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(texto);
+		//System.out.println(matcher);
+		while (matcher.find()) {
+			//count++;
+			//System.out.println("Você tem "+count+" ocoência de espaço antes de . ou ,");
+			//System.out.println(texto.substring((matcher.end(1)), (matcher.end(1)+50)));
+			erros.add(texto.substring((matcher.end(1)), (matcher.end(1)+50)));
+		}
+		return erros;
 	}
 	
 }

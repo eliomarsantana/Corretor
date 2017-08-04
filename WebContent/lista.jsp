@@ -33,13 +33,13 @@ body {
 		<thead>
 			<tr>
   				<th>#</th>
-  				<th>Erros</th>	
+  				<th>Espaço antes de virgula e ponto</th>	
   			</tr>
   		</thead>
   		<tbody>
   			<tr>
   			<%
-      List<String> erros = (List<String>)session.getAttribute("erros");
+      List<String> erros = (List<String>)request.getAttribute("erros");
   			
       int count = 0;
       for (String erro : erros ) {
@@ -51,17 +51,62 @@ body {
   			  <%
       }
       %>
-      
+      <thead>
+			<tr>
+  				<th>#</th>
+  				<th>Letra maiúscula depois de :</th>	
+  			</tr>
+  		</thead>
       <tr>
   			<%
-      List<String> erros2 = (List<String>)session.getAttribute("erros2");
+      List<String> erros2 = (List<String>)request.getAttribute("erros2");
   			
-      int counts = 0;
+      
       for (String erro2 : erros2 ) {
       %>
-  			<th scope="row"><%=counts++ %></th>
+  			<th scope="row"><%=count++ %></th>
   			
   			<td><%=erro2 %></td>
+  			</tr>
+  			  <%
+      }
+      %>
+      <thead>
+			<tr>
+  				<th>#</th>
+  				<th>Parênteses sem espaço anterior</th>	
+  			</tr>
+  		</thead>
+            <tr>
+  			<%
+      List<String> erros3 = (List<String>)request.getAttribute("erros3");
+  			
+     
+      for (String erro3 : erros3 ) {
+      %>
+  			<th scope="row"><%=count++ %></th>
+  			
+  			<td><%=erro3 %></td>
+  			</tr>
+  			  <%
+      }
+      %>
+            <thead>
+			<tr>
+  				<th>#</th>
+  				<th>Citação sem espaço anterior</th>	
+  			</tr>
+  		</thead>
+            <tr>
+  			<%
+      List<String> erros4 = (List<String>)request.getAttribute("erros4");
+  			
+     
+      for (String erro4 : erros4 ) {
+      %>
+  			<th scope="row"><%=count++ %></th>
+  			
+  			<td><%=erro4 %></td>
   			</tr>
   			  <%
       }
