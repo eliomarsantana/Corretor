@@ -4,7 +4,7 @@
 	<groupId>corretor.controller</groupId>
 	<artifactId>corretor</artifactId>
 	<version>1.0</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -39,7 +39,7 @@
 				<version>2.6</version>
 				<configuration>
 					<warSourceDirectory>WebContent</warSourceDirectory>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<failOnMissingWebXml>true</failOnMissingWebXml>
 					<additionalProperties>
 						<encoding.source>${project.build.sourceEncoding}</encoding.source>
 						<encoding.reporting>${project.reporting.outputEncoding}</encoding.reporting>

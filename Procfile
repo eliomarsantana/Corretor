@@ -1,1 +1,1 @@
-web: java -jar target/corretor.jar
+web: java -jar target/corretor.war
