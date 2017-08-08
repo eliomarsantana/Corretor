@@ -47,7 +47,7 @@ body {
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand">Corretor para modelo ACM</a>
+				</a> <a class="brand">Corretor</a>
 				<div class="nav-collapse collapse"></div>
 				<!--/.nav-collapse -->
 			</div>
@@ -60,23 +60,21 @@ body {
 		<div class="hero-unit">
 
 			<p>Anexar arquivo .tex:</p>
-			<p>
-					<%
-						String erro = (String) request.getAttribute("erro");
-					%>
-					
-				</p>
+			
 				<p>
+					
+					<input name="arquivo" type="file" id="arquivo" value="arquivo" /><br><br>
 					<input type="submit" class="btn btn-primary btn-large" value="Enviar"/>
-					<input name="arquivo" type="file" id="arquivo" value="arquivo" />
 				</p>
 			
 		</div>
+
 
 		<footer>
 		<p>©Instituto Federal de Educação, Ciências e Tecnologia da Bahia - 2016</p>
 		</footer>
 	</form>
+
 	</div>
 
 	<!-- /container -->

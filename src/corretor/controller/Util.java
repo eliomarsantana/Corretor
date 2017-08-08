@@ -9,6 +9,8 @@ import java.nio.charset.CharsetEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jbibtex.ParseException;
+
 
 public class Util {
 
@@ -31,7 +33,7 @@ public String charset(String texto) throws CharacterCodingException{
 		return cbuf.toString();
 	}
 	
-	/*public String extractText(String text) throws ParseException{
+	public String extractText(String text) throws ParseException{
 		
 		org.jbibtex.LaTeXParser latexParser = new org.jbibtex.LaTeXParser();
 
@@ -43,7 +45,7 @@ public String charset(String texto) throws CharacterCodingException{
 		
 		return plainTextString;
 		
-	}*/
+	}
 	
 	public String retiraCaracterEspecial(String texto){
 		String t1 = texto.replaceAll("%", "");

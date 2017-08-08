@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.jbibtex.ParseException;
+
 
 /**
  * Servlet implementation class ProcessFile
@@ -26,7 +28,7 @@ public class ProcessFile extends HttpServlet {
        
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	response.setContentType("text/html;charset=UTF-8");
+    	
     	HttpSession session = request.getSession();
     	
     	request.removeAttribute("erros");
@@ -37,13 +39,16 @@ public class ProcessFile extends HttpServlet {
     	
     	String arquivo = request.getParameter("arquivo");
     	
-    	
+    	if (arquivo.endsWith(".tex")) {
+
     	String diretorioPrincipal = arquivo.split("main.tex")[0];
     	
     	
 		String dados = new String(Files.readAllBytes(new File(arquivo).toPath()));
 		
-		TEXTO_COMPLETO = util.charset(dados);
+
+		TEXTO_COMPLETO = util.retiraCaracterEspecial(util.charset(dados));
+
 		
 			// TODO Auto-generated catch block
 		
@@ -59,12 +64,14 @@ public class ProcessFile extends HttpServlet {
 
 			String sections = new String(Files.readAllBytes(new File(diretorioPrincipal+input).toPath()));
 			
-			String sections2 = util.charset(sections);
+			String sections2 = util.retiraCaracterEspecial(util.charset(sections));
+			String inputSection2 = "";
 			Matcher matcher2 = pattern.matcher(sections2);
 			while (matcher2.find()) {
 				String input2 = matcher.group("texto");
 				String inputSection = new String(Files.readAllBytes(new File(diretorioPrincipal+input2).toPath()));
-				TEXTO_COMPLETO = "/n" +TEXTO_COMPLETO + inputSection;
+				inputSection2 = util.retiraCaracterEspecial(util.charset(inputSection));
+				TEXTO_COMPLETO = "/n" +TEXTO_COMPLETO + inputSection2;
 			}
 			TEXTO_COMPLETO = "/n" +TEXTO_COMPLETO + sections2;
 			
@@ -116,7 +123,12 @@ public class ProcessFile extends HttpServlet {
 					e.printStackTrace();
 				}*/
 			
+		}else{
+			request.setAttribute("erro", "Somente upload de arquivo .tex");
+			request.getRequestDispatcher("/erro.jsp").forward(request, response);
+
 		}
+    }
     	public List<String> getLista(){
     		Regras r = new Regras();
     		List<String> e = r.virgulaPonto(TEXTO_COMPLETO);
