@@ -1,1 +1,1 @@
-web: -Dserver.port=$PORT java -jar target/corretor-1.0.jar
+web: java -jar target/corretor-1.0.jar
