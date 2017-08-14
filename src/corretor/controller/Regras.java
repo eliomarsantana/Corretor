@@ -71,7 +71,7 @@ public class Regras {
 		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(texto);
 		while (matcher.find()) {
-			erros.add(texto.substring((matcher.end(1)), (matcher.end(1) + 50)));
+			erros.add((texto.substring((matcher.start(0)-20),(matcher.end(0))))+"<font face=\"arial\" size=2 style=\"background-color: #FFFF00\">"+(texto.substring((matcher.start(1)+3), (matcher.end(1)+5))+"</font>")+(texto.substring((matcher.start(1)+6), (matcher.end(1)+20))));
 		}
 		return erros;
 	}
@@ -103,7 +103,7 @@ public class Regras {
 		Matcher matcher = pattern.matcher(texto);
 		while (matcher.find()) {
 
-			erros.add(texto.substring((matcher.end(1)), (matcher.end(1) + 50)));
+			erros.add((texto.substring((matcher.start(0)-20),(matcher.end(0))))+"<font face=\"arial\" size=2 style=\"background-color: #FFFF00\">"+(texto.substring((matcher.start(1)+3), (matcher.end(1)+5))+"</font>")+(texto.substring((matcher.start(1)+6), (matcher.end(1)+20))));
 		}
 		return erros;
 	}
@@ -115,7 +115,7 @@ public class Regras {
 		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(texto);
 		while (matcher.find()) {
-			erros.add(texto.substring((matcher.end(1)), (matcher.end(1) + 50)));
+			erros.add((texto.substring((matcher.start(0)-20),(matcher.end(0))))+"<font face=\"arial\" size=2 style=\"background-color: #FFFF00\">"+(texto.substring((matcher.start(1)+3), (matcher.end(1)+5))+"</font>")+(texto.substring((matcher.start(1)+6), (matcher.end(1)+20))));
 		}
 		return erros;
 	}
