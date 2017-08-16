@@ -1,39 +1,74 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.util.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>Listando Erros</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<!-- Le styles -->
-<link href="./bootstrap/bootstrap.css" rel="stylesheet">
-<style type="text/css">
-body {
-	padding-top: 60px;
-	padding-bottom: 40px;
-}
-</style>
-<link href="./bootstrap/bootstrap-responsive.css" rel="stylesheet">
+    <title>Analisador de Texto</title>
 
-<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+    <link href="css/heroic-features.css" rel="stylesheet">
+    
+        <!-- Bootstrap Core CSS -->
+    <link href="../vendor2/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Le fav and touch icons -->
+    <!-- MetisMenu CSS -->
+    <link href="../vendor2/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../vendor2/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor2/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 </head>
 
-<table class="table table-hover">
+<body>
+<SCRIPT language=JavaScript>
+		function validar(formulario) {
+			if (formulario.arquivo.value == '') {
+				alert('POR FAVOR, ESCOLHA UM ARQUIVO!');
+				formulario.arquivo.focus();
+				return false;
+			}
+			return true;
+		}
+	</SCRIPT>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+     
+    <div class="row">
+	<div class="col-lg-6">
+	<table class="table table-hover">
 		<thead>
 			<tr>
   				<th>#</th>
-  				<th>Espaço antes de virgula e ponto</th>	
+  				<th>EspaÃ§o antes de virgula e ponto</th>	
   			</tr>
   		</thead>
   		<tbody>
@@ -54,7 +89,7 @@ body {
       <thead>
 			<tr>
   				<th>#</th>
-  				<th>Letra maiúscula depois de :</th>	
+  				<th>Letra maiÃºscula depois de :</th>	
   			</tr>
   		</thead>
       <tr>
@@ -74,7 +109,7 @@ body {
       <thead>
 			<tr>
   				<th>#</th>
-  				<th>Parênteses sem espaço anterior</th>	
+  				<th>ParÃªnteses sem espaÃ§o anterior</th>	
   			</tr>
   		</thead>
             <tr>
@@ -94,7 +129,7 @@ body {
             <thead>
 			<tr>
   				<th>#</th>
-  				<th>Citação sem espaço anterior</th>	
+  				<th>CitaÃ§Ã£o sem espaÃ§o anterior</th>	
   			</tr>
   		</thead>
             <tr>
@@ -113,8 +148,84 @@ body {
       %>
   		</tbody>
 		</table>
-		<footer>
-		<p>©Instituto Federal de Educação, Ciências e Tecnologia da Bahia - 2016</p>
-		</footer>
+		</div>
+		<div class="col-lg-4">
+		 <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-comment fa-fw"></i> New Comment
+                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-bolt fa-fw"></i> Server Crashed!
+                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-warning fa-fw"></i> Server Not Responding
+                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
+                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-money fa-fw"></i> Payment Received
+                                    <span class="pull-right text-muted small"><em>Yesterday</em>
+                                    </span>
+                                </a>
+                            </div>
+                            <!-- /.list-group -->
+                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    </div>
+    </div>
+
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Instituto Federal de EducaÃ§Ã£o, CiÃªncias e Tecnologia da Bahia - 2017</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
 </body>
+
 </html>

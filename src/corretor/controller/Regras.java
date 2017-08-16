@@ -84,11 +84,9 @@ public class Regras {
 
 		int tam = texto.length();
 		for (int i = 0; i < tam; i++) {
-			if ((texto.charAt(i) == ':')
-					&& (Character.isSpaceChar(texto.charAt(i + 1)) && (Character.isUpperCase(texto.charAt(i + 2))))) {
-				String p = texto.substring(i, i + 50);
+			if ((texto.charAt(i) == ':') && (Character.isSpaceChar(texto.charAt(i + 1)) && (Character.isUpperCase(texto.charAt(i + 2))))) {
 
-				erros.add(p);
+				erros.add(texto.substring(i-20, i - 1)+"<font face=\"arial\" size=2 style=\"background-color: #FFFF00\">"+texto.substring(i, i + 5)+"</font>"+texto.substring(i+5,i+20));
 
 			}
 		}
@@ -97,13 +95,13 @@ public class Regras {
 
 	public List<String> espacoParentese(String texto) {
 
-		String regex = "(\\w)([\\(])";
+		int tam = texto.length();
+		for (int i = 0; i < tam; i++) {
+			if ((texto.charAt(i) == '(') && (!Character.isSpaceChar(texto.charAt(i - 1)))) {
 
-		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-		Matcher matcher = pattern.matcher(texto);
-		while (matcher.find()) {
+				erros.add(texto.substring(i-20, i - 1)+"<font face=\"arial\" size=2 style=\"background-color: #FFFF00\">"+texto.substring(i, i + 5)+"</font>"+texto.substring(i+5,i+20));
 
-			erros.add((texto.substring((matcher.start(0)-20),(matcher.end(0))))+"<font face=\"arial\" size=2 style=\"background-color: #FFFF00\">"+(texto.substring((matcher.start(1)+3), (matcher.end(1)+5))+"</font>")+(texto.substring((matcher.start(1)+6), (matcher.end(1)+20))));
+			}
 		}
 		return erros;
 	}
@@ -115,7 +113,7 @@ public class Regras {
 		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(texto);
 		while (matcher.find()) {
-			erros.add((texto.substring((matcher.start(0)-20),(matcher.end(0))))+"<font face=\"arial\" size=2 style=\"background-color: #FFFF00\">"+(texto.substring((matcher.start(1)+3), (matcher.end(1)+5))+"</font>")+(texto.substring((matcher.start(1)+6), (matcher.end(1)+20))));
+			erros.add((texto.substring((matcher.start(0)-20),(matcher.end(1)))+"<font face=\"arial\" size=2 style=\"background-color: #FFFF00\">"+(texto.substring((matcher.start(1)+1),(matcher.start(1)+6))+"</font>"+(texto.substring((matcher.start(1)+6),(matcher.start(1)+20))))));
 		}
 		return erros;
 	}
