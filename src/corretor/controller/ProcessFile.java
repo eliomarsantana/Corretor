@@ -24,6 +24,7 @@ public class ProcessFile extends HttpServlet {
 	        super();	        
 	    }
 	public static String TEXTO_COMPLETO;
+	public static String TEXTO_COMPLETO_SEM_INCLUDE;
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -45,7 +46,11 @@ public class ProcessFile extends HttpServlet {
 
 			String dados = new String(Files.readAllBytes(new File(arquivo).toPath()));
 
-			TEXTO_COMPLETO = util.retiraCaracterEspecial(util.charset(dados));
+			TEXTO_COMPLETO = util.retiraCaracterEspecial(util.UTF8toISO(dados));
+			
+			Resumo r = new Resumo();
+			r.setResumo(TEXTO_COMPLETO);
+			TEXTO_COMPLETO_SEM_INCLUDE = r.getResumo();
 
 			int count = 0;
 			String regex = "\\\\input\\{(?<texto>.*?)\\}";
@@ -57,17 +62,17 @@ public class ProcessFile extends HttpServlet {
 
 				String sections = new String(Files.readAllBytes(new File(diretorioPrincipal + input).toPath()));
 
-				String sections2 = util.retiraCaracterEspecial(util.charset(sections));
+				String sections2 = util.retiraCaracterEspecial(util.UTF8toISO(sections));
 				String inputSection2 = "";
 				Matcher matcher2 = pattern.matcher(sections2);
 				while (matcher2.find()) {
 					String input2 = matcher.group("texto");
 					String inputSection = new String(
 							Files.readAllBytes(new File(diretorioPrincipal + input2).toPath()));
-					inputSection2 = util.retiraCaracterEspecial(util.charset(inputSection));
-					TEXTO_COMPLETO = "/n" + TEXTO_COMPLETO + inputSection2;
+					inputSection2 = util.retiraCaracterEspecial(util.UTF8toISO(inputSection));
+					TEXTO_COMPLETO_SEM_INCLUDE = "/n" + TEXTO_COMPLETO_SEM_INCLUDE + inputSection2;
 				}
-				TEXTO_COMPLETO = "/n" + TEXTO_COMPLETO + sections2;
+				TEXTO_COMPLETO_SEM_INCLUDE = "/n" + TEXTO_COMPLETO_SEM_INCLUDE + sections2;
 
 			}
 
@@ -87,25 +92,25 @@ public class ProcessFile extends HttpServlet {
 
 	public List<String> getLista() {
 		Regras r = new Regras();
-		List<String> e = r.virgulaPonto(TEXTO_COMPLETO);
+		List<String> e = r.virgulaPonto(TEXTO_COMPLETO_SEM_INCLUDE);
 		return e;
 	}
 
 	public List<String> getLista2() {
 		Regras r = new Regras();
-		List<String> e = r.encontrarDoisPontos(TEXTO_COMPLETO);
+		List<String> e = r.encontrarDoisPontos(TEXTO_COMPLETO_SEM_INCLUDE);
 		return e;
 	}
 
 	public List<String> getLista3() {
 		Regras r = new Regras();
-		List<String> e = r.espacoParentese(TEXTO_COMPLETO);
+		List<String> e = r.espacoParentese(TEXTO_COMPLETO_SEM_INCLUDE);
 		return e;
 	}
 
 	public List<String> getLista4() {
 		Regras r = new Regras();
-		List<String> e = r.espacoCitacao(TEXTO_COMPLETO);
+		List<String> e = r.espacoCitacao(TEXTO_COMPLETO_SEM_INCLUDE);
 		return e;
 	}
 

@@ -22,6 +22,22 @@ public class Util {
 
 		return cbuf.toString();
 	}
+	
+	public String UTF8toISO(String str){
+        Charset utf8charset = Charset.forName("UTF-8");
+        Charset iso88591charset = Charset.forName("ISO-8859-1");
+
+        ByteBuffer inputBuffer = ByteBuffer.wrap(str.getBytes());
+
+        // decode UTF-8
+        CharBuffer data = utf8charset.decode(inputBuffer);
+
+        // encode ISO-8559-1
+        ByteBuffer outputBuffer = iso88591charset.encode(data);
+        byte[] outputData = outputBuffer.array();
+
+        return new String(outputData);
+    }
 
 	public String retiraCaracterEspecial(String texto) {
 		String t1 = texto.replaceAll("%", "");
