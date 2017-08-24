@@ -47,9 +47,19 @@ public class ProcessFile extends HttpServlet {
 			String dados = new String(Files.readAllBytes(new File(arquivo).toPath()));
 
 			TEXTO_COMPLETO = util.retiraCaracterEspecial(util.UTF8toISO(dados));
+			/*
+			 * colocar o texto na sessão
+			 * na servlet correspondente fazer as operações
+			 * redirecionar pra o jsp correspondente
+			 * fazer include em lista.jsp do resultado
+			 * 
+			 * */
 			
-			Resumo r = new Resumo();
-			r.setResumo(TEXTO_COMPLETO);
+			
+			FileTypeBuilder flb = new LatexConcreteBuilder();
+	  		Resumo r = flb.createAbstract(TEXTO_COMPLETO);
+	  		Title t = flb.createTitle(TEXTO_COMPLETO);
+	  		
 			TEXTO_COMPLETO_SEM_INCLUDE = r.getResumo();
 
 			int count = 0;

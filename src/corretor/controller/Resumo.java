@@ -5,6 +5,10 @@ import java.util.regex.Pattern;
 
 public class Resumo {
 	
+	public Resumo(String text){
+		this.text = text;
+	}
+	
 	private String text;
 
 	public String getResumo() {
@@ -37,7 +41,4 @@ public class Resumo {
 	         }
 	 	   
 	 	}
-	 	public String getName(){
-	 		return "Abstract";
-	  	}
 }
