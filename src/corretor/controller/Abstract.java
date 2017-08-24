@@ -3,7 +3,7 @@ package corretor.controller;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Resumo {
+public class Abstract {
 	
 	private String text;
 

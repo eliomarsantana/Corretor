@@ -48,15 +48,16 @@ public class ProcessFile extends HttpServlet {
 
 			TEXTO_COMPLETO = util.retiraCaracterEspecial(util.UTF8toISO(dados));
 			
-			Resumo r = new Resumo();
+			Abstract r = new Abstract();
 			r.setResumo(TEXTO_COMPLETO);
 			TEXTO_COMPLETO_SEM_INCLUDE = r.getResumo();
 
-			int count = 0;
+			
 			String regex = "\\\\input\\{(?<texto>.*?)\\}";
 
 			Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 			Matcher matcher = pattern.matcher(TEXTO_COMPLETO);
+			
 			while (matcher.find()) {
 				String input = matcher.group("texto");
 
@@ -65,11 +66,15 @@ public class ProcessFile extends HttpServlet {
 				String sections2 = util.retiraCaracterEspecial(util.UTF8toISO(sections));
 				String inputSection2 = "";
 				Matcher matcher2 = pattern.matcher(sections2);
+				
 				while (matcher2.find()) {
+					
 					String input2 = matcher.group("texto");
-					String inputSection = new String(
-							Files.readAllBytes(new File(diretorioPrincipal + input2).toPath()));
+					
+					String inputSection = new String(Files.readAllBytes(new File(diretorioPrincipal + input2).toPath()));
+					
 					inputSection2 = util.retiraCaracterEspecial(util.UTF8toISO(inputSection));
+					
 					TEXTO_COMPLETO_SEM_INCLUDE = "/n" + TEXTO_COMPLETO_SEM_INCLUDE + inputSection2;
 				}
 				TEXTO_COMPLETO_SEM_INCLUDE = "/n" + TEXTO_COMPLETO_SEM_INCLUDE + sections2;
