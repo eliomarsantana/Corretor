@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Regras {
 
-	List<String> erros = new ArrayList<String>();
+	public Regras(String text){}
 
 	public Object countCharacters(String texto) {
 		int cont = 0;
@@ -119,5 +119,7 @@ public class Regras {
 		}
 		return erros;
 	}
+	List<String> erros = new ArrayList<String>();
+	private String text;
 
 }

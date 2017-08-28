@@ -6,6 +6,10 @@ import java.util.regex.Pattern;
 public class Title {
 
 	private String title;
+	
+	public Title(String text){
+		setTitle(text);
+	}
 
 	public String getTitle() {
 		return title;
@@ -23,7 +27,6 @@ public class Title {
 		if (comparator.find()) {
 			this.title = comparator.group("titulo");
 		}
-		System.out.println(getTitle()+"\n\n");
 	}
 	
 	public void setTitleSection(String text) {
@@ -38,6 +41,5 @@ public class Title {
 		if (comparator.find()) {
 			this.title = comparator.group("titulo");
 		}
-		System.out.println(getTitle()+"\n\n");
 	}
 }

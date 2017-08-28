@@ -63,6 +63,8 @@
         <!-- /.row -->
 
     </div>
+    <input type="hidden" name="title" value="TitleServlet"/>
+    <input type="hidden" name="abstract" value="AbstractServlet"/>
     </form>
     <!-- /.container -->
 

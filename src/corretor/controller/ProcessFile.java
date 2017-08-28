@@ -48,8 +48,18 @@ public class ProcessFile extends HttpServlet {
 
 			TEXTO_COMPLETO = util.retiraCaracterEspecial(util.UTF8toISO(dados));
 			
-			Abstract r = new Abstract();
-			r.setResumo(TEXTO_COMPLETO);
+		
+			FileTypeBuilder flb = new LatexConcreteBuilder();
+			Text text = flb.createText();
+			Abstract r = flb.createAbstract(TEXTO_COMPLETO);
+			Title t = flb.createTitle(TEXTO_COMPLETO);
+			text.setResumo(r);
+			text.setTitulo(t);
+			text.mountText();
+			
+			
+	  		
+
 			TEXTO_COMPLETO_SEM_INCLUDE = r.getResumo();
 
 			
@@ -80,13 +90,15 @@ public class ProcessFile extends HttpServlet {
 				TEXTO_COMPLETO_SEM_INCLUDE = "/n" + TEXTO_COMPLETO_SEM_INCLUDE + sections2;
 
 			}
+			
+			session.setAttribute("text", TEXTO_COMPLETO);
 
-			request.setAttribute("erros", getLista());
-			request.setAttribute("erros2", getLista2());
-			request.setAttribute("erros3", getLista3());
-			request.setAttribute("erros4", getLista4());
+			//request.setAttribute("erros", getLista());
+			//request.setAttribute("erros2", getLista2());
+			//request.setAttribute("erros3", getLista3());
+			//request.setAttribute("erros4", getLista4());
 
-			request.getRequestDispatcher("/lista.jsp").forward(request, response);
+			request.getRequestDispatcher("/TitleServlet").forward(request, response);
 
 		} else {
 			request.setAttribute("erro", "Somente upload de arquivo .tex");
@@ -96,25 +108,25 @@ public class ProcessFile extends HttpServlet {
 	}
 
 	public List<String> getLista() {
-		Regras r = new Regras();
+		Regras r = new Regras(TEXTO_COMPLETO_SEM_INCLUDE);
 		List<String> e = r.virgulaPonto(TEXTO_COMPLETO_SEM_INCLUDE);
 		return e;
 	}
 
 	public List<String> getLista2() {
-		Regras r = new Regras();
+		Regras r = new Regras(TEXTO_COMPLETO_SEM_INCLUDE);
 		List<String> e = r.encontrarDoisPontos(TEXTO_COMPLETO_SEM_INCLUDE);
 		return e;
 	}
 
 	public List<String> getLista3() {
-		Regras r = new Regras();
+		Regras r = new Regras(TEXTO_COMPLETO_SEM_INCLUDE);
 		List<String> e = r.espacoParentese(TEXTO_COMPLETO_SEM_INCLUDE);
 		return e;
 	}
 
 	public List<String> getLista4() {
-		Regras r = new Regras();
+		Regras r = new Regras(TEXTO_COMPLETO_SEM_INCLUDE);
 		List<String> e = r.espacoCitacao(TEXTO_COMPLETO_SEM_INCLUDE);
 		return e;
 	}

@@ -5,15 +5,33 @@ public class Text {
 	private Abstract resumo;
 	private Section[] sections;
 	
-
-	public Text(String text){
-		this.titulo.setTitle(text);
-		this.resumo.setResumo(text);
+	public void mountText(){
+		
+		System.out.println(titulo.getTitle()+"\n\n"+resumo.getResumo());
 	}
-	
-	public void getText(){
-		
-		
+
+	public Title getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(Title titulo) {
+		this.titulo = titulo;
+	}
+
+	public Abstract getResumo() {
+		return resumo;
+	}
+
+	public void setResumo(Abstract resumo) {
+		this.resumo = resumo;
+	}
+
+	public Section[] getSections() {
+		return sections;
+	}
+
+	public void setSections(Section[] sections) {
+		this.sections = sections;
 	}
 	
 	
