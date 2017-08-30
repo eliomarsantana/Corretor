@@ -28,18 +28,4 @@ public class Title {
 			this.title = comparator.group("titulo");
 		}
 	}
-	
-	public void setTitleSection(String text) {
-
-		String regex = "\\\\section\\{(?<titulo>.*?)\\}";
-
-		String title = text.replace("\\", "\\\\");//escapando as barras no arquivo
-		
-		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-		Matcher comparator = pattern.matcher(title);
-		
-		if (comparator.find()) {
-			this.title = comparator.group("titulo");
-		}
-	}
 }

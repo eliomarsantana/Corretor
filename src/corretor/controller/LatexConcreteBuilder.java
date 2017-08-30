@@ -20,4 +20,10 @@ public class LatexConcreteBuilder implements FileTypeBuilder{
 		return new Text();
 	}
 
+	@Override
+	public Section createSection(String text) {
+		// TODO Auto-generated method stub
+		return new Section(text);
+	}
+
 }

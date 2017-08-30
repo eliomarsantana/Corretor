@@ -20,14 +20,14 @@ public class TitleServlet extends HttpServlet {
 	protected void service(HttpServletRequest arg0, HttpServletResponse arg1) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = arg0.getSession();
-		String text = (String)session.getAttribute("text");
+		
 		
 		FileTypeBuilder flb = new LatexConcreteBuilder();
-		Title t = flb.createTitle(text);
+		//Title t = flb.createTitle(text);
 		//System.out.println("Título impresso na servlet");
 		//System.out.println(t.getTitle());
-		
-		flb.createText().setTitulo(t);
+		Text t = null;
+		System.out.println(t.getTitulo());
 		
 		
 		arg0.getRequestDispatcher("/AbstractServlet").forward(arg0, arg1);

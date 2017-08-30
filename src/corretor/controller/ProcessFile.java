@@ -53,9 +53,10 @@ public class ProcessFile extends HttpServlet {
 			Text text = flb.createText();
 			Abstract r = flb.createAbstract(TEXTO_COMPLETO);
 			Title t = flb.createTitle(TEXTO_COMPLETO);
+			Section s = flb.createSection(TEXTO_COMPLETO);
 			text.setResumo(r);
 			text.setTitulo(t);
-			text.mountText();
+			//text.mountText();
 			
 			
 	  		

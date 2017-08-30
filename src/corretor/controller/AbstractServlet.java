@@ -20,15 +20,15 @@ public class AbstractServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		HttpSession session = arg0.getSession();
-		String text = (String)session.getAttribute("text");
+		
 		
 		
 		FileTypeBuilder flb = new LatexConcreteBuilder();
-  		Abstract r = flb.createAbstract(text);
+  		//Abstract r = flb.createAbstract(text);
 
   		//System.out.println(r.getResumo());
   		
-  		flb.createText().setResumo(r);
+  		System.out.println(flb.createText().getResumo());
   		
 	}
 

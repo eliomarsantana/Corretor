@@ -119,6 +119,24 @@ public class Regras {
 		}
 		return erros;
 	}
+	public void countPeriodo(){
+		
+		String texto = "Este trabalho tem como objetivo. principal o desenvolvimento de. um corretor automÃ¡tico de trabalhos de ";
+
+		int count =0;
+		int t = texto.length();
+		for(int i=0;i<t;i++){
+			if(texto.charAt(i) == '.' && (Character.isSpaceChar(texto.charAt(i + 1)))){
+				count ++;
+			}
+		}
+		if(count <= 1){
+			System.out.println("Não pode ter só um período");
+		}else{
+			System.out.println("Mais de um período");
+		}
+	}
+	
 	List<String> erros = new ArrayList<String>();
 	private String text;
 
