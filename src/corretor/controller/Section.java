@@ -37,8 +37,8 @@ public class Section {
 	}
 	
 	
-	private static final Pattern PATTERN = Pattern.compile(".*\\\\begin\\{abstract\\}(.*)\\\\end\\{abstract\\}.*");
-
+	private static final Pattern PATTERN = Pattern.compile(".*\\\\section\\{(.*)\\}(.*)\\\\section\\{(.*?)\\}.*");
+														//(".*\\\\begin\\{abstract\\}(.*)\\\\end\\{abstract\\}.*")
 	private String title;
 	private Section[] subsections;
 	private String text;

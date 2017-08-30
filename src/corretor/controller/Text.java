@@ -5,9 +5,9 @@ public class Text {
 	private Abstract resumo;
 	private Section[] sections;
 	
-	public void mountText(){
+	public String mountText(){
 		
-		System.out.println(titulo.getTitle()+"\n\n"+resumo.getResumo());
+		return titulo.getTitle()+"\n\n"+resumo.getResumo();
 	}
 
 	public Title getTitulo() {

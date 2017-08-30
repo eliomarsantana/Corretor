@@ -1,17 +1,29 @@
 package corretor.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.FileItemFactory;
+import org.apache.tomcat.util.http.fileupload.FileUploadException;
+import org.apache.tomcat.util.http.fileupload.RequestContext;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 /**
  * Servlet implementation class ProcessFile
@@ -20,9 +32,7 @@ import javax.servlet.http.HttpSession;
 public class ProcessFile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	 public ProcessFile() {
-	        super();	        
-	    }
+
 	public static String TEXTO_COMPLETO;
 	public static String TEXTO_COMPLETO_SEM_INCLUDE;
 
@@ -38,13 +48,35 @@ public class ProcessFile extends HttpServlet {
 		request.removeAttribute("erros4");
 		Util util = new Util();
 
-		String arquivo = request.getParameter("arquivo");
+		//String arquivo = request.getParameter("arquivo");	
+		
+		
+		DiskFileItemFactory dfif = new DiskFileItemFactory();
+        ServletFileUpload sfu = new ServletFileUpload(dfif);
 
-		if (arquivo.endsWith(".tex")) {
+        if (!ServletFileUpload.isMultipartContent(request)) {
+              // tratar erro
+        }
 
-			String diretorioPrincipal = arquivo.split("main.tex")[0];
+        try {
+            List items = sfu.parseRequest((RequestContext) request);
+            //a posicao 1 corresponde ao segundo campo input do formulario (arquivo)
+            FileItem fileFI = (FileItem) items.get(0);
+            byte[] bytes = read(fileFI);
+           
 
-			String dados = new String(Files.readAllBytes(new File(arquivo).toPath()));
+           
+        } catch (FileUploadException e) {
+            // tratar erro
+        }
+		
+
+
+		if ("".endsWith(".tex")) {
+			
+			//String diretorioPrincipal = arquivo.split("main.tex")[0];
+
+			String dados = new String(Files.readAllBytes(new File("arquivo").toPath()));
 
 			TEXTO_COMPLETO = util.retiraCaracterEspecial(util.UTF8toISO(dados));
 			
@@ -61,7 +93,7 @@ public class ProcessFile extends HttpServlet {
 			
 	  		
 
-			TEXTO_COMPLETO_SEM_INCLUDE = r.getResumo();
+			TEXTO_COMPLETO_SEM_INCLUDE = text.mountText();;
 
 			
 			String regex = "\\\\input\\{(?<texto>.*?)\\}";
@@ -72,7 +104,7 @@ public class ProcessFile extends HttpServlet {
 			while (matcher.find()) {
 				String input = matcher.group("texto");
 
-				String sections = new String(Files.readAllBytes(new File(diretorioPrincipal + input).toPath()));
+				String sections = new String(Files.readAllBytes(new File(input).toPath()));
 
 				String sections2 = util.retiraCaracterEspecial(util.UTF8toISO(sections));
 				String inputSection2 = "";
@@ -82,7 +114,7 @@ public class ProcessFile extends HttpServlet {
 					
 					String input2 = matcher.group("texto");
 					
-					String inputSection = new String(Files.readAllBytes(new File(diretorioPrincipal + input2).toPath()));
+					String inputSection = new String(Files.readAllBytes(new File(input2).toPath()));
 					
 					inputSection2 = util.retiraCaracterEspecial(util.UTF8toISO(inputSection));
 					
@@ -92,7 +124,9 @@ public class ProcessFile extends HttpServlet {
 
 			}
 			
-			session.setAttribute("text", TEXTO_COMPLETO);
+			System.out.println(TEXTO_COMPLETO_SEM_INCLUDE);
+			
+			//session.setAttribute("text", TEXTO_COMPLETO);
 
 			//request.setAttribute("erros", getLista());
 			//request.setAttribute("erros2", getLista2());
@@ -131,5 +165,17 @@ public class ProcessFile extends HttpServlet {
 		List<String> e = r.espacoCitacao(TEXTO_COMPLETO_SEM_INCLUDE);
 		return e;
 	}
+	
+	private byte[] read(FileItem fi) throws IOException{
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        InputStream is = fi.getInputStream();
+        int read = 0;
+        final byte[] b = new byte[1024];
+
+        while ((read = is.read(b)) != -1) {
+            out.write(b, 0, read);
+        }
+        return out.toByteArray();
+    }
 
 }
