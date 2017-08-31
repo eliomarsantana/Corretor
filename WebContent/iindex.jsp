@@ -47,12 +47,12 @@
 
     <!-- Page Content -->
     <div class="container">
-	<form action="ProcessFile" method="POST" onSubmit="return (validar(this))">
+	<form action="ProcessFile" method="POST" onSubmit="return (validar(this))" enctype="multipart/form-data">
         <!-- Jumbotron Header -->
         <header class="jumbotron my-4">
             <p class="lead">Faça aqui o Upload do "main.tex"</p>
             <input name="arquivo" type="file" id="arquivo" value="arquivo" /><br><br>
-            <input type="submit" class="btn btn-primary btn-large" value="Uplad"/>
+            <input type="submit" class="btn btn-primary btn-large" value="Upload"/>
         </header>
 
         <!-- Page Features -->
